@@ -1,0 +1,44 @@
+reference : https://www.youtube.com/watch?v=SM3uwYgGxNE
+
+create typescript react
+    -> npx create-react-app project-name --template typescript
+
+    Install necessary node modules
+    -> npm install axios @reduxjs/toolkit react-redux
+
+    Project Structure
+    -> src
+        -> app
+            - hooks.ts
+            - store.ts
+        -> features
+            -> cake
+                - cakeSlice.ts
+                - CakeView.tsx
+            -> icecream
+                - icecreamSlice.ts
+                - IcecreamView.tsx
+            -> user
+                - userSlice.ts
+                - UserView.tsx
+
+    all jsx files will be tsx & js will be ts
+
+    -> store.ts
+        export default store
+        // export for useSelector and userDispatch hook
+        export type RootState = ReturnType<typeof store.getState>
+        export type AppDispatch = typeof store.dispatch
+
+    -> hooks.ts
+        // import useDispatch, useSelector & TypedUseSelectorHook
+        import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+        // import RootState & AppDispatch from store.ts
+        import {RootState, AppDispatch  } from "./store";
+
+        // export type selector of useSelector & useDispatch 
+        export const useAppSelector : TypedUseSelectorHook<RootState> = useSelector
+        export const useAppDispatch = () => useDispatch<AppDispatch>()
+
+    replace all useSelector & useDispatch by useAppSelector & useAppDispatch
+
